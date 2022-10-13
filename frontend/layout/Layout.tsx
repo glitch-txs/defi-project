@@ -16,7 +16,7 @@ const Layout = ({ children }: LayoutProps) => {
   useEffect(() => {
     setLoader(true)
 
-    setTimeout(()=>setLoader(false),  0)
+    setTimeout(()=>setLoader(false),  2000)
   }, [])
 
 
