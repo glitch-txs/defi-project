@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import Header from '../components/index/Header'
+import Header from '../components/pages/index/Header'
 import Image from 'next/image'
 import style from '../styles/pages/index.module.scss'
 

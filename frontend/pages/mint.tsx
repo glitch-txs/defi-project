@@ -1,5 +1,5 @@
 import { NextPage } from 'next'
-import Mint from '../components/mint/Mint'
+import Mint from '../components/pages/mint/Mint'
 
 const mint: NextPage = () => {
 
