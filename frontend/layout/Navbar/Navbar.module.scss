@@ -1,0 +1,48 @@
+@import '/styles//variables';
+
+.container{
+    position: relative;
+    display: flex;
+    padding: 20px;
+    padding-bottom: 17px;
+}
+
+.hr{
+    height: 1px;
+    width: 100%;
+    border: 0;
+    margin: 0;
+    background-image: linear-gradient(to left, rgba(187, 0, 12, 0.692), $black-1);
+}
+
+.logo{
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    transition: all 0.3s;
+
+    &:hover{
+        transition: all 0.3s;
+        transform: scale(1.1);
+    }
+}
+
+.routeContainer{
+    margin-left: auto;
+    display: flex;
+    gap: 80px;
+
+    font-size: 20px;
+    font-weight: 200;
+}
+
+.route{
+    cursor: pointer;
+    transition: all 0.3s;
+
+    &:hover{
+        transition: all 0.3s;
+        text-shadow: 0 0 30px $red-1;
+        color: $red-1;
+    }
+}
