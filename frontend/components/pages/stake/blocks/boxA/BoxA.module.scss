@@ -1,0 +1,121 @@
+@import '/styles/variables';
+
+.title{
+    font-size: 27px;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+.info{
+    display: flex;
+    justify-content: space-between;
+}
+
+.inWallet, .stake{
+    display: flex;
+    flex-direction: column;
+}
+
+.stakedTitle, .inWalletTitle, .rewardTitle{
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.stakedBalance{
+
+}
+
+.inWalletBalance{
+
+}
+
+.rewardContainer{
+    width: 100%;
+    height: 55px;
+    border-radius: 7px;
+    border: 0;
+    color: #fff;
+    padding: 0 20px;
+    font-size: 20px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background:linear-gradient(104.04deg,$black-2,$red-black);
+}
+
+.rewardInfo{
+    display: flex;
+    flex-direction: column;
+}
+
+.rewardBalance{
+}
+
+.claim{
+    background-color: $black-2;
+    color:$red-0;
+    letter-spacing: 1px;
+    font-weight: 500;
+    border: 0;
+    font-size: 14px;
+    font-weight: 600;
+    height: 30px;
+    line-height: 20px;
+    padding: 0 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 0 5px $red-black;
+
+    &:hover{
+        background:$black-1;
+    }
+}
+
+.btnContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.stakeBTN{
+    background:linear-gradient(104.04deg,$black-2,$red-black);
+    color: rgb(255, 255, 255);
+    font-weight: 500;
+    border: 0;
+    font-size: 14px;
+    font-weight: 600;
+    height: 50px;
+    line-height: 20px;
+    padding: 0 16px;
+    width: 100%;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 0 5px $red-black;
+
+    &:hover{
+        background:$black-1;
+    }
+}
+
+.unstakeBTN{
+    background:linear-gradient(104.04deg,$black-2,$red-black);
+    color: rgb(255, 255, 255);
+    font-weight: 500;
+    border: 0;
+    font-size: 14px;
+    font-weight: 600;
+    height: 50px;
+    line-height: 20px;
+    padding: 0 16px;
+    width: 100%;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 0 5px $red-black;
+
+    &:hover{
+        background:$black-1;
+    }
+}
