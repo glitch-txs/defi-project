@@ -14,7 +14,7 @@ const Staked = () => {
       <div className={style.balance} >635418941 <span style={{fontSize:'30px', color:'#BB000E'}} >FTR</span></div>
 
       <div className={style.img} >
-        <Image src='/images/stake.png' width={100} height={100} />
+        <Image src='/images/stake.png' width={100} height={100} alt='staking' />
       </div>
       </div>
     </>

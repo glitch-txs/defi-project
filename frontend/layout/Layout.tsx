@@ -11,7 +11,7 @@ interface LayoutProps {
 
 const Layout = ({ children }: LayoutProps) => {
 
-  const [loader, setLoader] = useState<boolean>()
+  const [loader, setLoader] = useState<boolean>(true)
 
   useEffect(() => {
     setLoader(true)
@@ -23,13 +23,14 @@ const Layout = ({ children }: LayoutProps) => {
   return (
     <>
     <Head> <title>DeFi</title> </Head>
-    { loader ? <Loader/> : <></> }
+    { loader ? <Loader/> :       
       <div className={style.container} >
         <Navbar/>
         <div className={style.childrenContainer} >
         { children }
         </div>
-      </div>
+      </div> }
+
     </>
   )
 }
