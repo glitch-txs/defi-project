@@ -20,7 +20,6 @@ const Connect = ({ children }: Props) => {
     const { setSigner, setAccount, setChainId, chainId, account, setProvider }: any = useContext(DeFiContext)
 
     useEffect(() => {
-        web3modal.clearCachedProvider()
         localStorage.removeItem("walletconnect")
       }, [])
 
