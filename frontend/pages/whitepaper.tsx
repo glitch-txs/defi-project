@@ -5,8 +5,8 @@ const whitepaper = () => {
   return (
     <div className={style.container} >
       <div className={style.mainTitle} >DeFi Goerli - Whitepaper</div>
-      <div className={style.mainDescription} > DeFi Goerli is portfolio oriented project to show a piece of my knowledge,
-      <br/> some of the technologies used to build it are: Next.js, Sass, Typescript, Hardhat, Solidity, Ethers.js, Typechain. </div>
+      <div className={style.mainDescription} > DeFi Goerli is a portfolio oriented project to show a piece of my knowledge.
+      <br/> Some of the technologies used are: Next.js, Typescript, Sass, Hardhat, Solidity, Ethers.js, Typechain. </div>
 
       <div className={style.subContainer} >
         <div className={style.title}>Future Token</div>
@@ -17,7 +17,7 @@ const whitepaper = () => {
       <div className={style.subContainer} >
         <div className={style.title}>Reward Token</div>
         <div className={style.description} >Reward token is an ERC20 token that can only be obtained by staking Future tokens in our Staking pool.<br/>
-        Reward token is minted by the staking smart contract. It doesn't have a maximum supply.</div>
+        Reward token is minted by the staking smart contract. It doesn&apos;t have a maximum supply.</div>
       </div>
 
       <div className={style.subContainer} >
