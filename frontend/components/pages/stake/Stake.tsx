@@ -2,7 +2,7 @@ import React from 'react'
 import APR from './blocks/APR/APR'
 import BoxA from './blocks/boxA/BoxA'
 import Staked from './blocks/Staked/Staked'
-import Stats from './blocks/Stats/Stats'
+import RewardAddress from './blocks/RewardAddress/RewardAddress'
 import style from './Stake.module.scss'
 
 const Stake = () => {
@@ -23,7 +23,7 @@ const Stake = () => {
                     <div className={style.APR}><APR/></div>
                 </div>
 
-                <div className={style.StatsB}><Stats/></div>
+                <div className={style.RewardAddress}><RewardAddress/></div>
 
             </div>
 

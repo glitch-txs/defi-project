@@ -3,7 +3,10 @@ import style from './APR.module.scss'
 
 const APR = () => {
   return (
-    <div>APR</div>
+    <>
+      <div className={style.title} >APR</div>
+      <div className={style.number} >40%</div>
+    </>
   )
 }
 

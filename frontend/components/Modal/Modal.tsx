@@ -7,9 +7,10 @@ import Image from 'next/image'
 interface Props {
     modal: boolean,
     setModal: (modal: boolean)=> void,
+    children: React.ReactNode,
   }
 
-const Modal = ({ modal, setModal }: Props) => {
+const Modal = ({ modal, setModal, children }: Props) => {
 
     const [mounted, setMounted] = useState<boolean>(false)
 
@@ -27,7 +28,7 @@ const Modal = ({ modal, setModal }: Props) => {
                                     <div className={style.img} onClick={()=>setModal(false)} >
                                     <Image src='/cross.png' width={30} height={30} alt='cross' />
                                     </div>
-                                    Please, switch to Goerli network
+                                    { children }
                                     </div>
                                 </div>
                                 </> 
