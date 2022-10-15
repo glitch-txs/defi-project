@@ -1,9 +1,8 @@
 @import '/styles/variables';
 
 .container{
-    min-height: 90vh;
-    max-height: 90vh; //off on responsive*
     width: 93vw;
+    min-height: 94vh;
     background-color: $black-1;
     border-radius: 30px;
     padding: 30px 55px;
@@ -13,4 +12,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+@media (max-width:1450px){
+    .container{
+        max-height: none;
+        padding: 30px 55px;
+    }
 }

@@ -22,14 +22,6 @@
     letter-spacing: 2px;
 }
 
-.stakedBalance{
-
-}
-
-.inWalletBalance{
-
-}
-
 .rewardContainer{
     width: 100%;
     height: 55px;
@@ -52,6 +44,11 @@
 }
 
 .rewardBalance{
+
+    span{
+        font-size: 15px;
+        color: $red-0;
+    }
 }
 
 .claim{
@@ -118,4 +115,35 @@
     &:hover{
         background:$black-1;
     }
+}
+
+@media (max-width:450px){
+
+    .staked{
+        min-width: 100px;
+    }
+    .info{
+        gap: 10px;
+    }
+
+    .stakedTitle, .inWalletTitle, .rewardTitle{
+        font-size: 9px;
+    }
+        
+    .stakedBalance, .inWalletBalance{
+        font-size: 15px;
+    }
+
+    .rewardBalance{
+        font-size: 17px;
+
+        span{
+            font-size: 11px;
+        }
+    }
+
+    .rewardContainer{
+        padding: 0 8px;
+    }
+
 }

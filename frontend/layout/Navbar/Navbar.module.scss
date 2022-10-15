@@ -1,5 +1,22 @@
 @import '/styles//variables';
 
+@mixin navbar{
+    margin-left: auto;
+    display: flex;
+    gap: 80px;
+    flex-direction: column;
+    justify-content: center;
+    position: fixed;
+    z-index: 10;
+    text-align: center;
+    background-color: $black-1;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    font-size: 20px;
+    font-weight: 200;
+}
+
 .container{
     position: relative;
     display: flex;
@@ -27,7 +44,7 @@
     }
 }
 
-.routeContainer{
+.routeContainer, .routeContainerOpen{
     margin-left: auto;
     display: flex;
     gap: 80px;
@@ -45,5 +62,25 @@
         transition: all 0.3s;
         text-shadow: 0 0 30px $red-1;
         color: $red-1;
+    }
+}
+
+@media (max-width:700px){ 
+    
+    .routeContainer{
+        @include navbar();
+        left: -100%;
+    }
+
+    
+    .routeContainerOpen{
+        @include navbar();
+        left: 0;
+    }
+
+    .logo{
+        position: absolute;
+        top: -20px;
+        left: -30px;
     }
 }

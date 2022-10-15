@@ -21,3 +21,9 @@
     background: radial-gradient(closest-side,#2b2b2b 0%, transparent 65%);
 
 }
+
+@media (max-width:1450px){
+    .imgContainer{
+        display: none;
+    }
+}

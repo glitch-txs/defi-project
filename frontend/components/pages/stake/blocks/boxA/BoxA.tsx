@@ -24,7 +24,7 @@ const BoxA = () => {
 
         <div className={style.rewardInfo} >
           <div className={style.rewardTitle} >CLAIMABLE REWARDS</div>
-          <div className={style.rewardBalance} >6646 <span style={{fontSize:'15px', color:'#BB000E'}} >RWD</span></div>
+          <div className={style.rewardBalance} >6646 <span>RWD</span></div>
         </div>
 
         <button className={style.claim} >Claim</button>

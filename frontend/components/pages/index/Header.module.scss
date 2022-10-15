@@ -47,16 +47,15 @@
     position: relative;
     display: inline-block;
     padding: 20px 30px;
-    margin-bottom: 80px;
+    margin-bottom: 0px;
     color: $red-0;
     text-decoration: none;
     text-transform: uppercase;
     transition: 0.5s;
     letter-spacing: 4px;
     overflow: hidden;
-
-   
 }
+
 .a:hover{
     background: $red-0;
     color: #050801;
@@ -143,5 +142,53 @@
     }
     50%,100%{
         bottom: 100%;
+    }
+}
+
+@media (max-width:920px){
+    .container{
+        margin-left: 0px;
+        gap: 20px;
+    }
+
+    .title{
+        font-size: 90px;
+        line-height: 70px;
+        span{
+            font-size: 60px;
+        }
+    }
+
+    .subtitle{
+        font-size: 40px;
+    }
+
+    .description{
+        font-size: 19px;
+    }
+}
+
+@media (max-width:600px){
+
+    .title{
+        font-size: 70px;
+        line-height: 70px;
+        span{
+            font-size: 48px;
+        }
+    }
+
+    .subtitle{
+        font-size: 35px;
+    }
+
+    .description{
+        font-size: 19px;
+    }
+}
+
+@media (max-width:450px){
+    .container{
+        gap: 25px;
     }
 }

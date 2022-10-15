@@ -117,3 +117,24 @@
         background:$black-1;
     }
 }
+
+@media (max-width:560px){
+    
+    .container{
+        min-width: 400px;
+    }
+}
+
+@media (max-width:450px){
+    
+    .container{
+        min-width: 350px;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width:400px){
+    .container{
+        min-width: 300px;
+    }
+}

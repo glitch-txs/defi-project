@@ -88,3 +88,50 @@
     outline: solid 2px rgb(143, 143, 143,0.1);
     box-shadow: rgba(143, 143, 143, 0.01) 0px 3px 5px, rgba(143, 143, 143, 0.01) 0px 3px 5px;
 }
+
+@media (max-width:1450px){
+
+    .boxContainer{
+        flex-direction: column;
+    }
+
+    .boxB{
+        width: 500px;
+    }
+
+    .APR{
+        padding: 20px;
+    }
+}
+
+@media (max-width:620px){
+
+    .container{ 
+        margin-bottom: 200px;
+    }
+
+    .StatsA{
+        flex-direction: column;
+    }
+
+    .RewardAddress{
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width:570px){
+    .boxB, .boxA{
+        width: 400px;
+    }
+}
+
+@media (max-width:450px){
+
+    .title{
+        font-size: 37px;
+    }
+
+    .boxB, .boxA{
+        width: 300px;
+    }
+}

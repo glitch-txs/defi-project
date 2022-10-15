@@ -7,15 +7,24 @@ const MetaLogo = () => {
   const metaRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    
+
+    let widthFox = 500;
+    let heightFox = 400
+
+    if(window.innerWidth <= 600){
+      widthFox = 300
+      heightFox = 300
+    }
+
     const viewer = ModelViewer({
       pxNotRatio: true,
-      width: 500,
-      height: 400,
+      width: widthFox,
+      height: heightFox,
       followMouse: true,
       slowDrift: false,
       meshJson
     });
+    
 
     if(metaRef && metaRef.current){
       metaRef.current.appendChild(viewer.container) 
