@@ -60,7 +60,7 @@ const Mint = () => {
 
           <div className={style.balanceTitle} >Future Balance:</div>
 
-          <div className={style.balance} >{ blockchainData.FutureBalance ? blockchainData.FutureBalance : '--'} FTR</div>
+          <div className={style.balance} >{ blockchainData?.FutureBalance ? blockchainData?.FutureBalance : '--'} FTR</div>
 
           <div className={style.balanceTitle} >Future Token Address:</div>
           <div className={style.balance} >
