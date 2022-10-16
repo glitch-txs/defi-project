@@ -32,7 +32,7 @@ const Mint = () => {
         const contract = Future__factory.connect(FutureAddress, signer)
 
         await contract.mint(account,ethers.utils.parseEther(amount))
-        .then( (res: ethers.ContractTransaction) => provider.once(res.hash, refetchData))
+        .then((res: ethers.ContractTransaction) => provider.once(res.hash, refetchData))
         .catch((er: object )=> console.log(er))
     }
   }

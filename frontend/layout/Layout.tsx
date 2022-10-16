@@ -19,7 +19,7 @@ const Layout = ({ children }: LayoutProps) => {
 
   useEffect(() => {
     setLoader(true)
-    checkConnection({ setSigner, setAccount, setChainId, setProvider, setBlockchainData })
+    // checkConnection({ setSigner, setAccount, setChainId, setProvider, setBlockchainData })
     setTimeout(()=>setLoader(false),  2000)
   }, [])
 
