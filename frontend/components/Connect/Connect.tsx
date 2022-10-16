@@ -18,21 +18,11 @@ const Connect = ({ children }: Props) => {
 
     const { setSigner, setAccount, setChainId, chainId, account, setProvider, provider, setBlockchainData }: any = useContext(DeFiContext)
 
-    const { error, isLoading } = useQuery(['blockchainData'], ()=> getBlockchainData({ provider, setBlockchainData}),
+    const { error } = useQuery(['blockchainData'], ()=> getBlockchainData({ provider, setBlockchainData}),
     {
       enabled: Boolean(account),
       refetchInterval: 15000,
-    }
-    )
-
-    if(error){
-      console.log(error)
-    }
-
-    
-    if(isLoading){
-      console.log(isLoading)
-    }
+    })
 
     useEffect(() => {
         localStorage.removeItem("walletconnect")
