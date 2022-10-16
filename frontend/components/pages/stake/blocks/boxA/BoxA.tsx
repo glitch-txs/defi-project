@@ -2,6 +2,7 @@ import React from 'react'
 import style from './BoxA.module.scss'
 
 const BoxA = () => {
+  
   return (
     <>
       <div className={style.title} > My Future Staking </div>

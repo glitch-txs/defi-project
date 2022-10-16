@@ -2,10 +2,11 @@ import React, { useContext, useEffect, useState } from 'react'
 import style from './Connect.module.scss'
 import MetaLogo from './metamask/MetaLogo'
 import { ethers } from "ethers"
-import WalletConnect from '@walletconnect/web3-provider'
 import Web3Modal from 'web3modal'
 import { DeFiContext } from '../../context/useContext'
-import Modal from '../Modal/Modal'
+import WalletConnectProvider from '@walletconnect/web3-provider'
+import { getBlockchainData } from '../../utils/getData'
+import { useQuery } from 'react-query'
 
 interface Props {
   children: React.ReactNode;
@@ -13,19 +14,34 @@ interface Props {
 
 const Connect = ({ children }: Props) => {
 
-  const [modal, setModal] = useState<boolean>(false)
-
     let web3modal: Web3Modal;
 
-    const { setSigner, setAccount, setChainId, chainId, account, setProvider }: any = useContext(DeFiContext)
+    const { setSigner, setAccount, setChainId, chainId, account, setProvider, provider, setBlockchainData }: any = useContext(DeFiContext)
+
+    const { error, isLoading } = useQuery(['blockchainData'], ()=> getBlockchainData({ provider, setBlockchainData}),
+    {
+      enabled: Boolean(account),
+      refetchInterval: 15000,
+    }
+    )
+
+    if(error){
+      console.log(error)
+    }
+
+    
+    if(isLoading){
+      console.log(isLoading)
+    }
 
     useEffect(() => {
         localStorage.removeItem("walletconnect")
+        web3modal.clearCachedProvider()
       }, [])
 
     const providerOptions = {
       walletconnect: {
-        package: WalletConnect,
+        package: WalletConnectProvider,
         options: {
             infuraId:"7fdd6b5a027641cf910c6c1cc6635610",
         },
@@ -34,8 +50,8 @@ const Connect = ({ children }: Props) => {
     if(typeof window!="undefined"){
       web3modal = new Web3Modal({
         //this is the network that will show up as default in trust wallet
-        network:"goerli",
-        cacheProvider: false,
+        // network:"goerli",
+        cacheProvider: true,
         providerOptions, // required
         theme: "dark"
       });
@@ -95,7 +111,6 @@ const Connect = ({ children }: Props) => {
             </>)
            }
         </div>
-        {/* <Modal modal={modal} setModal={setModal} /> */}
       </>
   )
 }

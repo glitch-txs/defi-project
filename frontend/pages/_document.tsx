@@ -5,8 +5,7 @@ export default function Document() {
     <Html>
       <Head>
         <meta name="description" content="DeFi personal project" />
-        <link rel="icon" href="/favicon.ico" />
-        <link rel='shortcut icon' href='http://localhost:3000/logo.png' type='image/png'/>
+        <link rel='shortcut icon' href='/logo.png' type='image/png'/>
       </Head>
       <body>
         <Main />

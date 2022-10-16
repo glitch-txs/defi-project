@@ -9,18 +9,20 @@ const MetaLogo = () => {
   useEffect(() => {
 
     let widthFox = 500;
-    let heightFox = 400
+    let heightFox = 400;
+    let followMouse = true;
 
     if(window.innerWidth <= 600){
       widthFox = 300
       heightFox = 300
+      followMouse = false;
     }
 
     const viewer = ModelViewer({
       pxNotRatio: true,
       width: widthFox,
       height: heightFox,
-      followMouse: true,
+      followMouse: followMouse,
       slowDrift: false,
       meshJson
     });

@@ -13,20 +13,24 @@ interface LayoutProps {
 
 const Layout = ({ children }: LayoutProps) => {
   
-  const { setSigner, setAccount, setChainId, setProvider }: any = useContext(DeFiContext)
+  const { setSigner, setAccount, setChainId, setProvider, setBlockchainData }: any = useContext(DeFiContext)
 
   const [loader, setLoader] = useState<boolean>(true)
 
   useEffect(() => {
     setLoader(true)
-    checkConnection({ setSigner, setAccount, setChainId, setProvider })
+    checkConnection({ setSigner, setAccount, setChainId, setProvider, setBlockchainData })
     setTimeout(()=>setLoader(false),  2000)
   }, [])
 
 
   return (
     <>
-    <Head> <title>DeFi</title> </Head>
+    <Head> 
+      <title>DeFi</title>
+      <link rel="icon" href="/favicon.ico" />
+    </Head>
+
     { loader ? <Loader/> :       
       <div className={style.container} >
         <Navbar/>

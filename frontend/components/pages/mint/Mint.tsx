@@ -3,40 +3,36 @@ import Connect from '../../Connect/Connect'
 import { DeFiContext } from '../../../context/useContext'
 import style from './Mint.module.scss'
 import Image from 'next/image'
-import { BigNumber, ethers } from 'ethers'
+import { ethers } from 'ethers'
 import { Future__factory } from '../../../types/ethers-contracts'
+import { QueryClient } from 'react-query'
 
 const Mint = () => {
 
-  const { account, signer, provider }: any = useContext(DeFiContext)
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: Infinity,
+      },
+    },
+  })
 
-  const [balance, setBalance] = useState<string>()
+  const refetchData = async()=>{
+    await queryClient.refetchQueries(['blockchainData'], { active: true })
+  }
+
+  const { account, signer, provider, blockchainData }: any = useContext(DeFiContext)
+
   const [amount, setAmount] = useState<string>()
 
   const FutureAddress = '0x1fe84fE4e1ae96F9b202188f7a6835dB3D27a264'
-
-  const getBalance = async () =>{
-    const contract = Future__factory.connect(FutureAddress, signer)
-    await contract.balanceOf(account)
-    .then((res: BigNumber) => setBalance(ethers.utils.formatEther(res)))
-    .catch((er: object )=> console.log(er))
-  }
-
-  useEffect(() => {
-
-    if(signer && account){
-      getBalance()
-    }
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [account])
 
   const handleMint = async()=>{
     if(signer && account && amount){
         const contract = Future__factory.connect(FutureAddress, signer)
 
         await contract.mint(account,ethers.utils.parseEther(amount))
-        .then( (res: ethers.ContractTransaction) => provider.once(res.hash, getBalance))
+        .then( (res: ethers.ContractTransaction) => provider.once(res.hash, refetchData))
         .catch((er: object )=> console.log(er))
     }
   }
@@ -46,7 +42,7 @@ const Mint = () => {
         const contract = Future__factory.connect(FutureAddress, signer)
 
         await contract.burn(ethers.utils.parseEther(amount))
-        .then( (res: ethers.ContractTransaction) => provider.once(res.hash, getBalance))
+        .then( (res: ethers.ContractTransaction) => provider.once(res.hash, refetchData))
         .catch((er: object )=> console.log(er))
     }
   }
@@ -64,7 +60,7 @@ const Mint = () => {
 
           <div className={style.balanceTitle} >Future Balance:</div>
 
-          <div className={style.balance} >{balance} FTR</div>
+          <div className={style.balance} >{ blockchainData.FutureBalance ? blockchainData.FutureBalance : '--'} FTR</div>
 
           <div className={style.balanceTitle} >Future Token Address:</div>
           <div className={style.balance} >
