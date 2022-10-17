@@ -87,6 +87,7 @@ const Connect = ({ children }: Props) => {
 
           provider.on("chainChanged", (chainId: number) => {
             setChainId(chainId)
+            window.location.reload()
           });
         }
     }

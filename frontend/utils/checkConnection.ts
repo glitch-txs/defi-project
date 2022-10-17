@@ -11,7 +11,7 @@ type getConnection = {
   setBlockchainData: (blockchainData: BlockchainData)=> void,
 }
 
-export const checkConnection = async({ setSigner, setAccount, setChainId, setProvider, setBlockchainData}: getConnection)=>{
+export const checkConnection = async({ setSigner, setAccount, setChainId, setProvider, setBlockchainData }: getConnection)=>{
 
     if(window.ethereum){
   
@@ -50,6 +50,7 @@ export const checkConnection = async({ setSigner, setAccount, setChainId, setPro
   
             window.ethereum.on("chainChanged", (chainId: number) => {
               setChainId(chainId)
+              window.location.reload()
             });
           }
         })
