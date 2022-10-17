@@ -6,13 +6,25 @@ import Web3Modal from 'web3modal'
 import { DeFiContext } from '../../context/useContext'
 import WalletConnectProvider from '@walletconnect/web3-provider'
 import { getBlockchainData } from '../../utils/getData'
-import { useQuery } from 'react-query'
+import { QueryClient, useQuery } from 'react-query'
 
 interface Props {
   children: React.ReactNode;
 }
 
 const Connect = ({ children }: Props) => {
+
+    const queryClient = new QueryClient({
+      defaultOptions: {
+        queries: {
+          staleTime: Infinity,
+        },
+      },
+    })
+
+    const refetchData = async()=>{
+      await queryClient.refetchQueries(['blockchainData'], { active: true })
+    }
 
     let web3modal: Web3Modal;
 
@@ -70,6 +82,7 @@ const Connect = ({ children }: Props) => {
               web3modal.clearCachedProvider()
               localStorage.removeItem("walletconnect")
             }
+            refetchData()
           });
 
           provider.on("chainChanged", (chainId: number) => {

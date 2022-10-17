@@ -1,4 +1,5 @@
 import { ethers } from "ethers"
+import { QueryClient } from "react-query";
 import { BlockchainData } from "../context/useContext";
 import { getBlockchainData } from "./getData";
 
@@ -11,7 +12,21 @@ type getConnection = {
 }
 
 export const checkConnection = async({ setSigner, setAccount, setChainId, setProvider, setBlockchainData}: getConnection)=>{
+
     if(window.ethereum){
+  
+        const queryClient = new QueryClient({
+          defaultOptions: {
+            queries: {
+              staleTime: Infinity,
+            },
+          },
+        })
+    
+        const refetchData = async()=>{
+          await queryClient.refetchQueries(['blockchainData'], { active: true })
+        }
+    
         window.ethereum
         .request({ method: 'eth_accounts' })
         .then(async (accounts: string[])=>{
@@ -30,6 +45,7 @@ export const checkConnection = async({ setSigner, setAccount, setChainId, setPro
                 setChainId(null)
                 setSigner(null)
               }
+              refetchData()
             });
   
             window.ethereum.on("chainChanged", (chainId: number) => {

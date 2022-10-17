@@ -1,8 +1,8 @@
-import { ethers } from 'ethers'
-import React, { ChangeEvent, useContext, useRef, useState } from 'react'
+import { BigNumber, ethers } from 'ethers'
+import React, { ChangeEvent, useContext, useEffect, useRef, useState } from 'react'
 import { QueryClient } from 'react-query'
 import { DeFiContext } from '../../../../../context/useContext'
-import { StakeFuture__factory } from '../../../../../types/ethers-contracts'
+import { Future__factory, StakeFuture__factory } from '../../../../../types/ethers-contracts'
 import Modal from '../../../../Modal/Modal'
 import style from './BoxA.module.scss'
 
@@ -21,11 +21,34 @@ const BoxA = () => {
   }
 
   const StakingAddress ='0x6D278724fC4d2580f9f68f074304d52B5e33aCB3'
+  const FutureAddress = '0x1fe84fE4e1ae96F9b202188f7a6835dB3D27a264'
 
   const { blockchainData, account, signer, provider }: any = useContext(DeFiContext)
 
   const [modal, setModal] = useState<boolean>(false)
   const [amount, setAmount] = useState<string>('')
+  const [allowed, setAllowed] = useState<boolean>(false)
+
+  useEffect(() => {
+const checkAllowance = async()=>{  
+  const futureContract = Future__factory.connect(FutureAddress, signer)
+  await futureContract.allowance(account, StakingAddress)
+  .then((res:BigNumber)=>setAllowed(0 < Number(ethers.utils.formatEther(res))))
+  .catch((er: object )=> console.log(er))
+  }
+
+  checkAllowance()
+  }, [account, signer])
+  
+
+  const handleAllowance = async()=>{
+    const contract = Future__factory.connect(FutureAddress, signer)
+
+    await contract.approve(StakingAddress, ethers.utils.parseEther('700000'))
+    .then( (res: ethers.ContractTransaction) => {provider.once(res.hash, ()=>setAllowed(true))})
+    .catch((er: object )=> console.log(er))
+    
+  }
 
   const handleUnstake = async()=>{
     if(signer && account){
@@ -95,8 +118,13 @@ const BoxA = () => {
       </div>
 
       <div className={style.btnContainer} >
-        <button className={style.stakeBTN} onClick={handleModal} key='0' >Stake</button>
-        <button className={style.unstakeBTN} onClick={handleUnstake} >Unstake</button>
+        { allowed ? 
+        <>
+          <button className={style.stakeBTN} onClick={handleModal} key='0' >Stake</button>
+          <button className={style.unstakeBTN} onClick={handleUnstake} >Unstake</button>
+        </> :
+          <button className={style.unstakeBTN} onClick={handleAllowance} >Authorize</button>
+        }
       </div>
 
       <Modal modal={modal} setModal={setModal}>
