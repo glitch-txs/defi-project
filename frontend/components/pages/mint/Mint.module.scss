@@ -43,6 +43,21 @@
 .img{
     margin-left: 10px;
     cursor: pointer;
+    position: relative;
+}
+
+.copied{
+    font-size: 12px;
+    position: absolute;
+    opacity: 1;
+    transition: all 0.3s;
+}
+
+.copiedFalse{
+    font-size: 12px;
+    transition: all 0.2s;
+    position: absolute;
+    opacity: 0;
 }
 
 .titleMint{

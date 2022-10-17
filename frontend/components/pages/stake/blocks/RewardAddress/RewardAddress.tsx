@@ -6,6 +6,7 @@ const RewardAddress = () => {
 
   const address = '0x97F7BB30AFD27b0cc116491c71378678aC9cafC4'
   const [responsive, setResponsive] = useState<boolean>(false)
+  const [copied, setCopied] = useState<boolean>(false)
 
   useEffect(() => {
 
@@ -35,6 +36,11 @@ const RewardAddress = () => {
     
   }, [])
   
+  const copy = ()=>{
+    navigator.clipboard.writeText('0x97F7BB30AFD27b0cc116491c71378678aC9cafC4')
+    setCopied(true)
+    setTimeout(()=>setCopied(false),1000)
+  }
 
   return (
     <>
@@ -43,7 +49,10 @@ const RewardAddress = () => {
         </div>
         <div className={style.value} >
         {responsive ? `${address.slice(0, 8)}...${address.slice(34, 42)}` : '0x97F7BB30AFD27b0cc116491c71378678aC9cafC4' }
-        <div className={style.img} onClick={()=>navigator.clipboard.writeText('0x97F7BB30AFD27b0cc116491c71378678aC9cafC4')} ><Image src='/copy.png' width={30} height={30} alt='copy' /></div>
+        <div className={style.img} onClick={copy} >
+          <Image src='/copy.png' width={30} height={30} alt='copy' />
+          <div className={copied ? style.copied : style.copiedFalse}>Copied!</div>
+        </div>
         </div>
     </>
   )

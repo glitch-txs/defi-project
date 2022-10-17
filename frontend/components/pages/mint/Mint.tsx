@@ -23,7 +23,8 @@ const Mint = () => {
 
   const { account, signer, provider, blockchainData }: any = useContext(DeFiContext)
 
-  const [amount, setAmount] = useState<string>()
+  const [amount, setAmount] = useState<string>('')
+  const [copied, setCopied] = useState<boolean>(false)
 
   const FutureAddress = '0x1fe84fE4e1ae96F9b202188f7a6835dB3D27a264'
 
@@ -34,6 +35,7 @@ const Mint = () => {
         await contract.mint(account,ethers.utils.parseEther(amount))
         .then((res: ethers.ContractTransaction) => provider.once(res.hash, refetchData))
         .catch((er: object )=> console.log(er))
+        setAmount('')
     }
   }
   
@@ -44,7 +46,14 @@ const Mint = () => {
         await contract.burn(ethers.utils.parseEther(amount))
         .then( (res: ethers.ContractTransaction) => provider.once(res.hash, refetchData))
         .catch((er: object )=> console.log(er))
+        setAmount('')
     }
+  }
+
+  const copy = ()=>{
+    navigator.clipboard.writeText(FutureAddress)
+    setCopied(true)
+    setTimeout(()=>setCopied(false),1000)
   }
   
 
@@ -67,7 +76,11 @@ const Mint = () => {
 
             {`${account?.slice(0, 8)}...${account?.slice(34, 42)}`}
 
-            <div className={style.img} onClick={()=>navigator.clipboard.writeText(FutureAddress)} ><Image src='/copy.png' width={30} height={30} alt='copy' /></div>
+            <div className={style.img} onClick={copy} >
+              <Image src='/copy.png' width={30} height={30} alt='copy' />
+              <div className={copied ? style.copied : style.copiedFalse}>Copied!</div>
+            </div>
+            
 
           </div>
 
@@ -80,6 +93,7 @@ const Mint = () => {
           }}
           autoFocus
           type="number"
+          value={amount}
           onChange={(e: ChangeEvent<HTMLInputElement>)=>setAmount(e.target.value)}
           className={style.input} placeholder='set Amount'/>
           <div className={style.btnContainer}>

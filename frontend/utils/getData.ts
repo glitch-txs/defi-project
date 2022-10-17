@@ -30,7 +30,7 @@ export const getBlockchainData = async({ provider, setBlockchainData }: GetData)
         .catch((er: object )=> console.log(er))
         
         const stakingContract = new ethers.Contract(StakingAddress, abi.abi, provider)
-        await stakingContract.rewards(userAddres)
+        await stakingContract.earned(userAddres)
         .then((res:BigNumber)=>_blockchainData = {..._blockchainData, RewardBalance: ethers.utils.formatEther(res)})
         .catch((er: object )=> console.log(er))
         
