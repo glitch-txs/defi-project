@@ -5,6 +5,7 @@ import { DeFiContext } from '../../../../../context/useContext'
 import { Future__factory, StakeFuture__factory } from '../../../../../types/ethers-contracts'
 import Modal from '../../../../Modal/Modal'
 import style from './BoxA.module.scss'
+import Spinner from '../../../../Spinner/Spinner'
 
 const BoxA = () => {
 
@@ -28,6 +29,7 @@ const BoxA = () => {
   const [modal, setModal] = useState<boolean>(false)
   const [amount, setAmount] = useState<string>('')
   const [allowed, setAllowed] = useState<boolean>(false)
+  const [loading, setLoading] = useState<boolean>(false)
 
   useEffect(() => {
 const checkAllowance = async()=>{  
@@ -43,10 +45,18 @@ const checkAllowance = async()=>{
 
   const handleAllowance = async()=>{
     const contract = Future__factory.connect(FutureAddress, signer)
-
     await contract.approve(StakingAddress, ethers.utils.parseEther('700000'))
-    .then( (res: ethers.ContractTransaction) => {provider.once(res.hash, ()=>setAllowed(true))})
-    .catch((er: object )=> console.log(er))
+    .then( (res: ethers.ContractTransaction) => {
+      setLoading(true)
+      provider.once(res.hash, ()=>{
+        setAllowed(true)
+        setLoading(false)
+      })
+    })
+    .catch((er: object )=> {
+      setLoading(false)
+      console.log(er)
+    })
     
   }
 
@@ -118,12 +128,12 @@ const checkAllowance = async()=>{
       </div>
 
       <div className={style.btnContainer} >
-        { allowed ? 
+        { allowed || blockchainData.Allowed ? 
         <>
           <button className={style.stakeBTN} onClick={handleModal} key='0' >Stake</button>
           <button className={style.unstakeBTN} onClick={handleUnstake} >Unstake</button>
         </> :
-          <button className={style.unstakeBTN} onClick={handleAllowance} >Authorize</button>
+          <button className={style.unstakeBTN} onClick={handleAllowance} >{ loading ? <Spinner/> : 'Authorize' }</button>
         }
       </div>
 

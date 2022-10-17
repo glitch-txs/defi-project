@@ -28,6 +28,10 @@ export const getBlockchainData = async({ provider, setBlockchainData }: GetData)
         await futureContract.balanceOf(StakingAddress)
         .then((res:BigNumber)=>_blockchainData = {..._blockchainData, TotalStaked: ethers.utils.formatEther(res)})
         .catch((er: object )=> console.log(er))
+
+        await futureContract.allowance(userAddres,StakingAddress)
+        .then((res:BigNumber)=>_blockchainData = {..._blockchainData, Allowed: 0 < Number(ethers.utils.formatEther(res))})
+        .catch((er: object )=> console.log(er))
         
         const stakingContract = new ethers.Contract(StakingAddress, abi.abi, provider)
         await stakingContract.earned(userAddres)

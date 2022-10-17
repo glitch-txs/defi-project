@@ -4,6 +4,7 @@ import { ethers } from "ethers"
 export type BlockchainData = {
     FutureBalance?: string,
     TotalStaked?: string,
+    Allowed?:boolean;
     RewardBalance?: string,
     StakedByUser?: string,
 }
