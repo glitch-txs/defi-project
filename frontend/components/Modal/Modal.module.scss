@@ -38,14 +38,14 @@
     visibility: hidden;
 
     background-color: rgba(0, 0, 0, 0.5);
-    transition: all 1s;
+    transition: all 0s;
 }
 
 
 .card{
-    background-color: $black-red;
+    background-color: $red-black;
     height: 300px;
-    width: 600px;
+    width: 500px;
     border-radius: 20px;
 
     display: flex;

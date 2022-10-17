@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useContext, useEffect, useState } from 'react'
+import React, { ChangeEvent, useContext, useState } from 'react'
 import Connect from '../../Connect/Connect'
 import { DeFiContext } from '../../../context/useContext'
 import style from './Mint.module.scss'
@@ -60,7 +60,7 @@ const Mint = () => {
 
           <div className={style.balanceTitle} >Future Balance:</div>
 
-          <div className={style.balance} >{ blockchainData?.FutureBalance ? blockchainData?.FutureBalance : '--'} FTR</div>
+          <div className={style.balance} >{ blockchainData?.FutureBalance ? Number(blockchainData?.FutureBalance) : '--'} FTR</div>
 
           <div className={style.balanceTitle} >Future Token Address:</div>
           <div className={style.balance} >
@@ -78,6 +78,7 @@ const Mint = () => {
               event.preventDefault();
             }
           }}
+          autoFocus
           type="number"
           onChange={(e: ChangeEvent<HTMLInputElement>)=>setAmount(e.target.value)}
           className={style.input} placeholder='set Amount'/>

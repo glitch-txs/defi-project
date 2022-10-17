@@ -24,11 +24,6 @@ const Connect = ({ children }: Props) => {
       refetchInterval: 15000,
     })
 
-    useEffect(() => {
-        localStorage.removeItem("walletconnect")
-        web3modal.clearCachedProvider()
-      }, [])
-
     const providerOptions = {
       walletconnect: {
         package: WalletConnectProvider,
@@ -37,6 +32,7 @@ const Connect = ({ children }: Props) => {
         },
       },
     };
+
     if(typeof window!="undefined"){
       web3modal = new Web3Modal({
         //this is the network that will show up as default in trust wallet
@@ -46,6 +42,11 @@ const Connect = ({ children }: Props) => {
         theme: "dark"
       });
     }  
+    
+    useEffect(() => {
+      localStorage.removeItem("walletconnect")
+      web3modal.clearCachedProvider()
+    }, [])
 
     async function connect() {
         

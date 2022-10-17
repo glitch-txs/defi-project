@@ -17,9 +17,9 @@ const Navbar = (props: Props) => {
                     <Image src='/logo.png'  width={80} height={80}/>
                 </div></Link>
             <div className={open ? style.routeContainerOpen : style.routeContainer}>
-                <Link href='/mint' ><div className={style.route}  onClick={()=>setOpen(!open)} >Mint</div></Link>
-                <Link href='/stake' ><div className={style.route}  onClick={()=>setOpen(!open)} >Stake</div></Link>
-                <Link href='/whitepaper' ><div className={style.route}  onClick={()=>setOpen(!open)} >Whitepaper</div></Link> 
+                <Link href='/mint' ><a className={style.route}  onClick={()=>setOpen(!open)} >Mint</a></Link>
+                <Link href='/stake' ><a className={style.route}  onClick={()=>setOpen(!open)} >Stake</a></Link>
+                <Link href='/whitepaper' ><a className={style.route}  onClick={()=>setOpen(!open)} >Whitepaper</a></Link> 
             </div>
                 <Ham open={open} setOpen={setOpen} />
         </div>
