@@ -12,7 +12,7 @@ const Home: NextPage = () => {
       <div className={style.container} >
       <Header/>    
         <div className={style.imgContainer} >
-          <Image src='/images/graph.png' width={916/ div} height={811/ div} quality={100} alt='graph money' />
+          <Image src='/images/graph.png' width={916/ div} height={811/ div} quality={100} alt='graph money' placeholder="blur"/>
         </div>
       </div>
     </div>
