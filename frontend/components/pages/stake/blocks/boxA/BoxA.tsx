@@ -39,7 +39,9 @@ const checkAllowance = async()=>{
   .catch((er: object )=> console.log(er))
   }
 
-  checkAllowance()
+  if(account && signer){
+    checkAllowance()
+  }
   }, [account, signer])
   
 
